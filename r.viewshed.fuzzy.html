@@ -1,0 +1,71 @@
+<div class="toc">
+<h4 class="toc">Table of contents</h4>
+<ul class="toc">
+    <li class="toc"><a href="#description" class="toc">DESCRIPTION</a>
+    <li class="toc"><a href="#notes" class="toc">NOTES</a></li>
+    <li class="toc"><a href="#examples" class="toc">EXAMPLE</a></li>
+    <li class="toc"><a href="#see-also" class="toc">SEE ALSO</a></li>
+    <li class="toc"><a href="#author" class="toc">AUTHOR</a></li>
+    <li class="toc"><a href="#references" class="toc">REFERENCES</a></li>
+</ul>
+</div>
+
+<h2><a name="description">DESCRIPTION</a></h2>
+
+<em>r.viewshed.fuzzy</em> creates fuzzy viewsheds where the level of visibility decays
+with distance (see references for more information). The level of decay is determined by 
+the visual arc and the size of the target looked at. The threshold for the 'optimum' level
+visibility is set with the 'dist_b1' parameter. The denominator parameter controls how steep 
+the visibility drop-off is. The output raster returns cells with values ranging from 1-0.
+The closer the value is to 1/0, the higher the level of clarity.
+
+<h2><a name="notes">NOTES</a></h2>
+
+The module uses r.viewshed. It requires the same inputs, and can use the same flags.
+It also uses r.grow.distance create distance decay raster values.
+
+After finishing the operations, the module does not load automatically the output(s) for 
+display. For the moment only works manually.
+
+<h2><a name="examples">EXAMPLE</a></h2>
+
+With default parameters and flags -c (consider curvature of the earth) and -r (consider the 
+effect of atmospheric refraction) enabled, target width set to 1 m, visual arc to 1 minute, and
+distance to b1 1 km:<br>
+<div class="code"><pre>
+r.viewshed.fuzzy -c -r vect=singlePt rast=DEM output=singleTest twidth=1.0 varc=1.0 dist_b1=1000
+</pre></div>
+
+With default parameters and flags -c (consider curvature of the earth) and -r (consider the 
+effect of atmospheric refraction) enabled, target width set to 3 m, visual arc to 0.5 minute, and
+distance to b1 1 km:<br>
+<div class="code"><pre>
+r.viewshed.fuzzy -c -r vect=multiPt rast=DEM output=multiTest twidth=3.0 varc=0.5 dist_b1=1000
+</pre></div>
+
+
+<h2><a name="see-also">SEE ALSO</a></h2>
+
+<em>
+<a href="r.viewshed.html">r.viewshed</a>,
+<a href="r.grow.distance.html">r.grow.distance</a>
+</em>
+
+
+<h2><a name="author">AUTHOR</a></h2>
+
+Nagy Edmond
+
+<h2><a name="references">REFERENCES</a></h2>
+
+<p>Fisher, P.F., 1992. First experiments in Viewshed Uncertainty: Simulating Fuzzy Viewsheds. Photogrammetric Engineering & Remote Sensing, 58, 345-352.</p>
+<p>Ogburn, D., 2006. Assessing the level of visibility of cultural objects in past landscapes. Journal of Archaeological Science, 33, 405-413.</p>
+
+<p>
+<a href="http://grass.osgeo.org">GRASS Development Team</a>,
+GRASS GIS 7.0.4 Reference Manual
+</p>
+
+</div>
+</body>
+</html>
